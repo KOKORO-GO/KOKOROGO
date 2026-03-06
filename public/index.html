@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Zen+Maru+Gothic:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -66,6 +67,23 @@
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(248,180,200,0.4); }
+        .nav-actions {
+            display: flex; align-items: center; gap: 12px;
+        }
+        .lang-toggle {
+            display: flex; align-items: center; gap: 4px;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            color: #fff; padding: 7px 14px; border-radius: 100px;
+            font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 500;
+            cursor: pointer; transition: background 0.2s, border-color 0.2s;
+        }
+        .lang-toggle:hover {
+            background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.4);
+        }
+        .lang-toggle .material-symbols-outlined {
+            font-size: 18px;
+        }
+        .lang-label { letter-spacing: 0.5px; }
 
         /* ============ HERO ============ */
         .hero {
@@ -430,7 +448,13 @@
     <!-- NAV -->
     <nav id="mainNav">
         <a href="#" class="nav-logo"><span class="heart">心</span>KokoroGo</a>
-        <a href="#waitlist" class="nav-cta">ウェイトリストに参加</a>
+        <div class="nav-actions">
+            <button class="lang-toggle" id="langToggle" title="English">
+                <span class="material-symbols-outlined">language</span>
+                <span class="lang-label">EN</span>
+            </button>
+            <a href="#waitlist" class="nav-cta" data-ja="ウェイトリストに参加" data-en="Join Waitlist">ウェイトリストに参加</a>
+        </div>
     </nav>
 
     <!-- HERO -->
@@ -443,26 +467,26 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <span class="dot"></span>
-                <span>2026年春ローンチ予定</span>
+                <span data-ja="2026年春ローンチ予定" data-en="Scheduled to launch in spring 2026">2026年春ローンチ予定</span>
             </div>
-            <p class="hero-tagline-jp jp">好きを見つけて、未来をつくろう。</p>
+            <p class="hero-tagline-jp jp" data-ja="好きを見つけて、未来をつくろう。" data-en="Find what you love and create your future.">好きを見つけて、未来をつくろう。</p>
             <h1>Kokoro<span>Go</span></h1>
             <p class="hero-sub-en">Find your spark. Build your future.</p>
-            <p class="hero-desc jp">AIがあなたの「好き」を発見し、自分だけのビジネスに変える。12〜16歳の女の子のための、情熱発見＆ベンチャープラットフォーム。</p>
+            <p class="hero-desc jp" data-ja="AIがあなたの「好き」を発見し、自分だけのビジネスに変える。12〜16歳の女の子のための、情熱発見＆ベンチャープラットフォーム。" data-en="AI discovers your passions and turns them into your own business. A passion discovery and venture platform for girls aged 12-16.">AIがあなたの「好き」を発見し、自分だけのビジネスに変える。12〜16歳の女の子のための、情熱発見＆ベンチャープラットフォーム。</p>
             <div class="hero-cta-row">
-                <a href="#waitlist" class="btn-primary jp">ウェイトリストに参加 →</a>
-                <a href="#how" class="btn-secondary jp">くわしく見る ↓</a>
+                <a href="#waitlist" class="btn-primary jp" data-ja="ウェイトリストに参加 →" data-en="Join the waitlist →">ウェイトリストに参加 →</a>
+                <a href="#how" class="btn-secondary jp" data-ja="くわしく見る ↓" data-en="See details ↓">くわしく見る ↓</a>
             </div>
-            <p class="hero-trust jp">✦ 無料で始められる ✦ クレカ不要 ✦ 日本語対応</p>
+            <p class="hero-trust jp" data-ja="✦ 無料で始められる ✦ クレカ不要 ✦ 日本語対応" data-en="✦ Start for free ✦ No credit card required ✦ Available in Japanese">✦ 無料で始められる ✦ クレカ不要 ✦ 日本語対応</p>
         </div>
     </section>
 
     <!-- HOW IT WORKS -->
     <section class="how-it-works" id="how">
         <div class="how-header fade-up">
-            <p class="section-label">How It Works</p>
-            <h2 class="section-title jp">3ステップで、あなたの<br>「好き」がカタチになる</h2>
-            <p class="section-subtitle jp">KokoroGoは、AIの力で「好き」を見つけ、それを本物のプロジェクトに育てるお手伝いをします。</p>
+            <p class="section-label" data-ja="How It Works" data-en="HOW IT WORKS">How It Works</p>
+            <h2 class="section-title jp" data-ja="3ステップで、あなたの「好き」がカタチになる" data-en="In just 3 steps, your passion will become a reality">3ステップで、あなたの<br>「好き」がカタチになる</h2>
+            <p class="section-subtitle jp" data-ja="KokoroGoは、AIの力で「好き」を見つけ、それを本物のプロジェクトに育てるお手伝いをします。" data-en="KokoroGo uses the power of AI to help you find what you love and turn it into a real project.">KokoroGoは、AIの力で「好き」を見つけ、それを本物のプロジェクトに育てるお手伝いをします。</p>
         </div>
         <div class="steps-grid">
             <div class="step-card fade-up">
@@ -471,8 +495,8 @@
                     <span class="step-num">1</span>
                 </div>
                 <h3>Discover Your Kokoro</h3>
-                <p class="step-jp jp">ココロを見つける</p>
-                <p class="step-desc jp">AIと一緒に対話しながら、あなたの興味・才能・価値観をマッピング。自分でも気づかなかった「好き」が見えてくる。</p>
+                <p class="step-jp jp" data-ja="ココロを見つける" data-en="Find your heart">ココロを見つける</p>
+                <p class="step-desc jp" data-ja="AIと一緒に対話しながら、あなたの興味・才能・価値観をマッピング。自分でも気づかなかった「好き」が見えてくる。" data-en="While interacting with AI, you can map your interests, talents, and values, and discover things you like that you didn't even realize you had.">AIと一緒に対話しながら、あなたの興味・才能・価値観をマッピング。自分でも気づかなかった「好き」が見えてくる。</p>
             </div>
             <div class="step-card fade-up">
                 <div class="step-icon">
@@ -480,8 +504,8 @@
                     <span class="step-num">2</span>
                 </div>
                 <h3>Build Your Venture</h3>
-                <p class="step-jp jp">ベンチャーをつくる</p>
-                <p class="step-desc jp">あなたの「好き」に合わせて、AIがウェブサイトやビジネスプランを自動生成。アイデアが一瞬でカタチに。</p>
+                <p class="step-jp jp" data-ja="ベンチャーをつくる" data-en="Creating a venture">ベンチャーをつくる</p>
+                <p class="step-desc jp" data-ja="あなたの「好き」に合わせて、AIがウェブサイトやビジネスプランを自動生成。アイデアが一瞬でカタチに。" data-en="AI automatically generates websites and business plans based on your interests, turning your ideas into reality in an instant.">あなたの「好き」に合わせて、AIがウェブサイトやビジネスプランを自動生成。アイデアが一瞬でカタチに。</p>
             </div>
             <div class="step-card fade-up">
                 <div class="step-icon">
@@ -489,8 +513,8 @@
                     <span class="step-num">3</span>
                 </div>
                 <h3>Grow with Support</h3>
-                <p class="step-jp jp">サポートと共に成長する</p>
-                <p class="step-desc jp">毎日のAIコクリエイターとコミュニティがあなたの成長をサポート。一人じゃない、みんなで進もう。</p>
+                <p class="step-jp jp" data-ja="サポートと共に成長する" data-en="Growing with support">サポートと共に成長する</p>
+                <p class="step-desc jp" data-ja="毎日のAIコクリエイターとコミュニティがあなたの成長をサポート。一人じゃない、みんなで進もう。" data-en="Everyday AI co-creators and communities support your growth. You're not alone, let's move forward together.">毎日のAIコクリエイターとコミュニティがあなたの成長をサポート。一人じゃない、みんなで進もう。</p>
             </div>
         </div>
     </section>
@@ -499,34 +523,34 @@
     <section class="features" id="features">
         <div class="features-inner">
             <div class="features-header fade-up">
-                <p class="section-label">Features</p>
-                <h2 class="section-title jp">すべてがあなたのために</h2>
-                <p class="section-subtitle jp">KokoroGoの4つの機能が、あなたの情熱を本物の力に変えます。</p>
+                <p class="section-label" data-ja="Features" data-en="FEATURES">Features</p>
+                <h2 class="section-title jp" data-ja="すべてがあなたのために" data-en="Everything for you">すべてがあなたのために</h2>
+                <p class="section-subtitle jp" data-ja="KokoroGoの4つの機能が、あなたの情熱を本物の力に変えます。" data-en="KokoroGo's four features will turn your passion into real power.">KokoroGoの4つの機能が、あなたの情熱を本物の力に変えます。</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card fade-up">
                     <span class="feature-emoji">🗺️</span>
                     <h3>Kokoro Mapping</h3>
-                    <p class="feature-jp jp">ココロマッピング</p>
-                    <p class="jp">AIとの対話で、あなたの興味・才能・価値観をビジュアルマップに。好きなこと、得意なこと、大切にしていることの交差点を見つけよう。</p>
+                    <p class="feature-jp jp" data-ja="ココロマッピング" data-en="Heart Mapping">ココロマッピング</p>
+                    <p class="jp" data-ja="AIとの対話で、あなたの興味・才能・価値観をビジュアルマップに。好きなこと、得意なこと、大切にしていることの交差点を見つけよう。" data-en="Interact with AI to create a visual map of your interests, talents, and values. Discover the intersection of what you love, what you're good at, and what you value.">AIとの対話で、あなたの興味・才能・価値観をビジュアルマップに。好きなこと、得意なこと、大切にしていることの交差点を見つけよう。</p>
                 </div>
                 <div class="feature-card fade-up">
                     <span class="feature-emoji">⚡</span>
                     <h3>Venture Builder</h3>
-                    <p class="feature-jp jp">ベンチャービルダー</p>
-                    <p class="jp">あなたの「好き」に基づいて、AIがウェブサイト・ビジネスプラン・ブランドを自動作成。ゼロからビジネスを始める力が手に入る。</p>
+                    <p class="feature-jp jp" data-ja="ベンチャービルダー" data-en="Venture Builder">ベンチャービルダー</p>
+                    <p class="jp" data-ja="あなたの「好き」に基づいて、AIがウェブサイト・ビジネスプラン・ブランドを自動作成。ゼロからビジネスを始める力が手に入る。" data-en="AI will automatically create a website, business plan, and brand based on your interests, giving you the power to start your business from scratch.">あなたの「好き」に基づいて、AIがウェブサイト・ビジネスプラン・ブランドを自動作成。ゼロからビジネスを始める力が手に入る。</p>
                 </div>
                 <div class="feature-card fade-up">
                     <span class="feature-emoji">🤖</span>
                     <h3>Daily AI Co-Creator</h3>
-                    <p class="feature-jp jp">毎日のAIコクリエイター</p>
-                    <p class="jp">あなた専用のAIパートナーが毎日サポート。アイデア出し、問題解決、モチベーション維持まで、いつでも頼れる存在。</p>
+                    <p class="feature-jp jp" data-ja="毎日のAIコクリエイター" data-en="Everyday AI Co-creators">毎日のAIコクリエイター</p>
+                    <p class="jp" data-ja="あなた専用のAIパートナーが毎日サポート。アイデア出し、問題解決、モチベーション維持まで、いつでも頼れる存在。" data-en="Your personal AI partner will support you every day. You can always rely on them to generate ideas, solve problems, and stay motivated.">あなた専用のAIパートナーが毎日サポート。アイデア出し、問題解決、モチベーション維持まで、いつでも頼れる存在。</p>
                 </div>
                 <div class="feature-card fade-up">
                     <span class="feature-emoji">💬</span>
                     <h3>Community Hub</h3>
-                    <p class="feature-jp jp">コミュニティハブ</p>
-                    <p class="jp">同じ志を持つ仲間とつながろう。お互いのプロジェクトを応援し合い、メンターからアドバイスをもらえる安全な場所。</p>
+                    <p class="feature-jp jp" data-ja="コミュニティハブ" data-en="Community Hub">コミュニティハブ</p>
+                    <p class="jp" data-ja="同じ志を持つ仲間とつながろう。お互いのプロジェクトを応援し合い、メンターからアドバイスをもらえる安全な場所。" data-en="Connect with like-minded people in a safe space where you can support each other's projects and get advice from mentors.">同じ志を持つ仲間とつながろう。お互いのプロジェクトを応援し合い、メンターからアドバイスをもらえる安全な場所。</p>
                 </div>
             </div>
         </div>
@@ -536,25 +560,25 @@
     <section class="kokoro-map" id="kokoromap">
         <div class="kokoro-map-inner">
             <div class="kokoro-map-text fade-up">
-                <p class="section-label jp">ココロマッピング</p>
-                <h2 class="section-title jp">あなただけの「好き」の地図</h2>
-                <p class="section-subtitle jp">AIとの対話を通じて、自分の内面をビジュアル化。興味の広がりや才能の交差点が、新しい可能性を教えてくれる。</p>
+                <p class="section-label jp" data-ja="ココロマッピング" data-en="HEART MAPPING">ココロマッピング</p>
+                <h2 class="section-title jp" data-ja="あなただけの「好き」の地図" data-en="Your own map of what you love">あなただけの「好き」の地図</h2>
+                <p class="section-subtitle jp" data-ja="AIとの対話を通じて、自分の内面をビジュアル化。興味の広がりや才能の交差点が、新しい可能性を教えてくれる。" data-en="Visualize your inner self through dialogue with AI. The intersection of your interests and talents reveals new possibilities.">AIとの対話を通じて、自分の内面をビジュアル化。興味の広がりや才能の交差点が、新しい可能性を教えてくれる。</p>
                 <ul class="kokoro-map-bullets">
                     <li>
                         <span class="bullet-icon">✦</span>
-                        <span class="jp">5分の対話であなたの興味を分析</span>
+                        <span class="jp" data-ja="5分の対話であなたの興味を分析" data-en="Analyze your interests in a 5-minute conversation">5分の対話であなたの興味を分析</span>
                     </li>
                     <li>
                         <span class="bullet-icon">✦</span>
-                        <span class="jp">才能・価値観・情熱をビジュアルマップに</span>
+                        <span class="jp" data-ja="才能・価値観・情熱をビジュアルマップに" data-en="A visual map of talents, values, and passions">才能・価値観・情熱をビジュアルマップに</span>
                     </li>
                     <li>
                         <span class="bullet-icon">✦</span>
-                        <span class="jp">あなたにぴったりのベンチャーを提案</span>
+                        <span class="jp" data-ja="あなたにぴったりのベンチャーを提案" data-en="We propose the perfect venture for you">あなたにぴったりのベンチャーを提案</span>
                     </li>
                     <li>
                         <span class="bullet-icon">✦</span>
-                        <span class="jp">使うほど精度が上がるAI</span>
+                        <span class="jp" data-ja="使うほど精度が上がるAI" data-en="AI that gets more accurate the more you use it">使うほど精度が上がるAI</span>
                     </li>
                 </ul>
             </div>
@@ -563,12 +587,12 @@
                 <div class="kokoro-ring kokoro-ring-2"></div>
                 <div class="kokoro-ring kokoro-ring-1"></div>
                 <div class="kokoro-center">心</div>
-                <span class="kokoro-node kokoro-node-1 jp">🎨 アート</span>
-                <span class="kokoro-node kokoro-node-2 jp">💻 テクノロジー</span>
-                <span class="kokoro-node kokoro-node-3 jp">🌍 環境</span>
-                <span class="kokoro-node kokoro-node-4 jp">📸 写真</span>
-                <span class="kokoro-node kokoro-node-5 jp">🎵 音楽</span>
-                <span class="kokoro-node kokoro-node-6 jp">✍️ 文章</span>
+                <span class="kokoro-node kokoro-node-1 jp" data-ja="🎨 アート" data-en="🎨 Art">🎨 アート</span>
+                <span class="kokoro-node kokoro-node-2 jp" data-ja="💻 テクノロジー" data-en="💻 Technology">💻 テクノロジー</span>
+                <span class="kokoro-node kokoro-node-3 jp" data-ja="🌍 環境" data-en="🌍 Environment">🌍 環境</span>
+                <span class="kokoro-node kokoro-node-4 jp" data-ja="📸 写真" data-en="📸 Photos">📸 写真</span>
+                <span class="kokoro-node kokoro-node-5 jp" data-ja="🎵 音楽" data-en="🎵 Music">🎵 音楽</span>
+                <span class="kokoro-node kokoro-node-6 jp" data-ja="✍️ 文章" data-en="✍️ Text">✍️ 文章</span>
             </div>
         </div>
     </section>
@@ -577,69 +601,69 @@
     <section class="pricing" id="pricing">
         <div class="pricing-inner">
             <div class="pricing-header fade-up">
-                <p class="section-label">Pricing</p>
-                <h2 class="section-title jp">あなたにぴったりのプラン</h2>
-                <p class="section-subtitle jp">まずは無料で体験。もっと深く探究したくなったら、プランをアップグレード。</p>
+                <p class="section-label" data-ja="Pricing" data-en="PRICING">Pricing</p>
+                <h2 class="section-title jp" data-ja="あなたにぴったりのプラン" data-en="The plan that's right for you">あなたにぴったりのプラン</h2>
+                <p class="section-subtitle jp" data-ja="まずは無料で体験。もっと深く探究したくなったら、プランをアップグレード。" data-en="Start for free, then upgrade your plan when you want to explore more.">まずは無料で体験。もっと深く探究したくなったら、プランをアップグレード。</p>
             </div>
             <div class="pricing-grid">
                 <!-- Free -->
                 <div class="price-card fade-up">
                     <h3>Free</h3>
-                    <p class="price-jp jp">フリー</p>
+                    <p class="price-jp jp" data-ja="フリー" data-en="Free">フリー</p>
                     <p class="price-amount"><span class="currency">¥</span>0</p>
-                    <p class="price-period jp">ずっと無料</p>
+                    <p class="price-period jp" data-ja="ずっと無料" data-en="Free forever">ずっと無料</p>
                     <ul class="price-features">
-                        <li><span class="check">✓</span><span class="jp">ココロマッピング（基本）</span></li>
-                        <li><span class="check">✓</span><span class="jp">1つのベンチャープロジェクト</span></li>
-                        <li><span class="check">✓</span><span class="jp">コミュニティ閲覧</span></li>
-                        <li><span class="check">✓</span><span class="jp">週1回のAIセッション</span></li>
+                        <li><span class="check">✓</span><span class="jp" data-ja="ココロマッピング（基本）" data-en="Heart Mapping (Basic)">ココロマッピング（基本）</span></li>
+                        <li><span class="check">✓</span><span class="jp" data-ja="1つのベンチャープロジェクト" data-en="One venture project">1つのベンチャープロジェクト</span></li>
+                        <li><span class="check">✓</span><span class="jp" data-ja="コミュニティ閲覧" data-en="Community View">コミュニティ閲覧</span></li>
+                        <li><span class="check">✓</span><span class="jp" data-ja="週1回のAIセッション" data-en="Weekly AI session">週1回のAIセッション</span></li>
                     </ul>
-                    <button class="price-btn" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">無料で始める</button>
+                    <button class="price-btn" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" data-ja="無料で始める" data-en="Start free">無料で始める</button>
                 </div>
                 <!-- Explorer -->
                 <div class="price-card fade-up">
                     <h3>Explorer</h3>
-                    <p class="price-jp jp">エクスプローラー</p>
+                    <p class="price-jp jp" data-ja="エクスプローラー" data-en="Explorer">エクスプローラー</p>
                     <p class="price-amount"><span class="currency">¥</span>2,980</p>
-                    <p class="price-period jp">月額（税込）</p>
+                    <p class="price-period jp" data-ja="月額（税込）" data-en="Monthly fee (tax included)">月額（税込）</p>
                     <ul class="price-features">
-                        <li><span class="check">✓</span><span class="jp">ココロマッピング（詳細版）</span></li>
-                        <li><span class="check">✓</span><span class="jp">3つのベンチャープロジェクト</span></li>
-                        <li><span class="check">✓</span><span class="jp">毎日のAIコクリエイター</span></li>
-                        <li><span class="check">✓</span><span class="jp">コミュニティ参加</span></li>
+                        <li><span class="check">✓</span><span class="jp" data-ja="ココロマッピング（詳細版）" data-en="Heart Mapping (Detailed Version)">ココロマッピング（詳細版）</span></li>
+                        <li><span class="check">✓</span><span class="jp" data-ja="3つのベンチャープロジェクト" data-en="Three venture projects">3つのベンチャープロジェクト</span></li>
+                        <li><span class="check">✓</span><span class="jp" data-ja="毎日のAIコクリエイター" data-en="Everyday AI Co-creators">毎日のAIコクリエイター</span></li>
+                        <li><span class="check">✓</span><span class="jp" data-ja="コミュニティ参加" data-en="Community Participation">コミュニティ参加</span></li>
                     </ul>
-                    <button class="price-btn" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">エクスプローラーを選ぶ</button>
+                    <button class="price-btn" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" data-ja="エクスプローラーを選ぶ" data-en="Select Explorer">エクスプローラーを選ぶ</button>
                 </div>
                 <!-- Creator Pro -->
                 <div class="price-card popular fade-up">
-                    <span class="price-badge jp">一番人気</span>
+                    <span class="price-badge jp" data-ja="一番人気" data-en="Most popular">一番人気</span>
                     <h3>Creator Pro</h3>
-                    <p class="price-jp jp">クリエイタープロ</p>
+                    <p class="price-jp jp" data-ja="クリエイタープロ" data-en="Creator Pro">クリエイタープロ</p>
                     <p class="price-amount"><span class="currency">¥</span>4,980</p>
-                    <p class="price-period jp">月額（税込）</p>
+                    <p class="price-period jp" data-ja="月額（税込）" data-en="Monthly fee (tax included)">月額（税込）</p>
                     <ul class="price-features">
-                        <li><span class="check">✓</span><span class="jp">フルココロマッピング</span></li>
-                        <li><span class="check">✓</span><span class="jp">無制限のベンチャー</span></li>
-                        <li><span class="check">✓</span><span class="jp">AIコクリエイター無制限</span></li>
-                        <li><span class="check">✓</span><span class="jp">メンターマッチング</span></li>
-                        <li><span class="check">✓</span><span class="jp">カスタムドメイン</span></li>
+                        <li><span class="check">✓</span><span class="jp" data-ja="フルココロマッピング" data-en="Full Heart Mapping">フルココロマッピング</span></li>
+                        <li><span class="check">✓</span><span class="jp" data-ja="無制限のベンチャー" data-en="Unlimited Ventures">無制限のベンチャー</span></li>
+                        <li><span class="check">✓</span><span class="jp" data-ja="AIコクリエイター無制限" data-en="AI Co-Creators Unlimited">AIコクリエイター無制限</span></li>
+                        <li><span class="check">✓</span><span class="jp" data-ja="メンターマッチング" data-en="Mentor Matching">メンターマッチング</span></li>
+                        <li><span class="check">✓</span><span class="jp" data-ja="カスタムドメイン" data-en="Custom domain">カスタムドメイン</span></li>
                     </ul>
-                    <button class="price-btn" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">クリエイタープロを選ぶ</button>
+                    <button class="price-btn" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" data-ja="クリエイタープロを選ぶ" data-en="Choose Creator Pro">クリエイタープロを選ぶ</button>
                 </div>
                 <!-- Family -->
                 <div class="price-card fade-up">
                     <h3>Family</h3>
-                    <p class="price-jp jp">ファミリー</p>
+                    <p class="price-jp jp" data-ja="ファミリー" data-en="Family">ファミリー</p>
                     <p class="price-amount"><span class="currency">¥</span>5,980</p>
-                    <p class="price-period jp">月額（税込）</p>
+                    <p class="price-period jp" data-ja="月額（税込）" data-en="Monthly fee (tax included)">月額（税込）</p>
                     <ul class="price-features">
-                        <li><span class="check">✓</span><span class="jp">Creator Pro全機能</span></li>
-                        <li><span class="check">✓</span><span class="jp">保護者ダッシュボード</span></li>
-                        <li><span class="check">✓</span><span class="jp">進捗レポート（週次）</span></li>
-                        <li><span class="check">✓</span><span class="jp">親子ワークショップ</span></li>
-                        <li><span class="check">✓</span><span class="jp">優先サポート</span></li>
+                        <li><span class="check">✓</span><span class="jp" data-ja="Creator Pro全機能" data-en="Creator Pro full features">Creator Pro全機能</span></li>
+                        <li><span class="check">✓</span><span class="jp" data-ja="保護者ダッシュボード" data-en="Parent Dashboard">保護者ダッシュボード</span></li>
+                        <li><span class="check">✓</span><span class="jp" data-ja="進捗レポート（週次）" data-en="Weekly progress report">進捗レポート（週次）</span></li>
+                        <li><span class="check">✓</span><span class="jp" data-ja="親子ワークショップ" data-en="Parent-child workshop">親子ワークショップ</span></li>
+                        <li><span class="check">✓</span><span class="jp" data-ja="優先サポート" data-en="Priority Support">優先サポート</span></li>
                     </ul>
-                    <button class="price-btn" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">ファミリーを選ぶ</button>
+                    <button class="price-btn" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" data-ja="ファミリーを選ぶ" data-en="Choose Family">ファミリーを選ぶ</button>
                 </div>
             </div>
         </div>
@@ -648,61 +672,61 @@
     <!-- FAQ -->
     <section class="faq" id="faq">
         <div class="faq-header fade-up">
-            <p class="section-label">FAQ</p>
-            <h2 class="section-title jp">よくある質問</h2>
+            <p class="section-label" data-ja="FAQ" data-en="FAQ">FAQ</p>
+            <h2 class="section-title jp" data-ja="よくある質問" data-en="FAQ">よくある質問</h2>
         </div>
         <div class="faq-item fade-up">
             <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
-                <h3 class="jp">KokoroGoは何歳から使えますか？</h3>
+                <h3 class="jp" data-ja="KokoroGoは何歳から使えますか？" data-en="From what age can KokoroGo be used?">KokoroGoは何歳から使えますか？</h3>
                 <span class="faq-toggle">+</span>
             </div>
             <div class="faq-a">
-                <p class="jp">KokoroGoは12〜16歳の女の子を対象に設計されています。保護者の同意があれば、11歳からもご利用いただけます。ファミリープランでは、保護者がお子さまの活動を見守れるダッシュボードをご用意しています。</p>
-            </div>
-        </div>
-        <div class="faq-item fade-up">
-            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
-                <h3 class="jp">AIは安全ですか？子どもが使って大丈夫？</h3>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-a">
-                <p class="jp">安全性は最優先です。KokoroGoのAIは年齢に適したコンテンツのみを生成し、個人情報の保護を徹底しています。すべての会話は安全フィルターを通過し、保護者はいつでも内容を確認できます。</p>
+                <p class="jp" data-ja="KokoroGoは12〜16歳の女の子を対象に設計されています。保護者の同意があれば、11歳からもご利用いただけます。ファミリープランでは、保護者がお子さまの活動を見守れるダッシュボードをご用意しています。" data-en="KokoroGo is designed for girls ages 12-16, but is available for ages 11 and up with parental consent. The family plan includes a dashboard for parents to monitor their children's activities.">KokoroGoは12〜16歳の女の子を対象に設計されています。保護者の同意があれば、11歳からもご利用いただけます。ファミリープランでは、保護者がお子さまの活動を見守れるダッシュボードをご用意しています。</p>
             </div>
         </div>
         <div class="faq-item fade-up">
             <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
-                <h3 class="jp">本当に無料で始められますか？</h3>
+                <h3 class="jp" data-ja="AIは安全ですか？子どもが使って大丈夫？" data-en="Is AI safe? Can children use it?">AIは安全ですか？子どもが使って大丈夫？</h3>
                 <span class="faq-toggle">+</span>
             </div>
             <div class="faq-a">
-                <p class="jp">はい、フリープランは永久無料です。ココロマッピングの基本機能と1つのベンチャープロジェクト、コミュニティの閲覧が無料でご利用いただけます。クレジットカードの登録も不要です。</p>
+                <p class="jp" data-ja="安全性は最優先です。KokoroGoのAIは年齢に適したコンテンツのみを生成し、個人情報の保護を徹底しています。すべての会話は安全フィルターを通過し、保護者はいつでも内容を確認できます。" data-en="Safety is our number one priority. KokoroGo's AI generates only age-appropriate content and we take great care to protect personal information. All conversations go through a safety filter and parents can review them at any time.">安全性は最優先です。KokoroGoのAIは年齢に適したコンテンツのみを生成し、個人情報の保護を徹底しています。すべての会話は安全フィルターを通過し、保護者はいつでも内容を確認できます。</p>
             </div>
         </div>
         <div class="faq-item fade-up">
             <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
-                <h3 class="jp">「ベンチャー」って何をつくるの？</h3>
+                <h3 class="jp" data-ja="本当に無料で始められますか？" data-en="Can I really get started for free?">本当に無料で始められますか？</h3>
                 <span class="faq-toggle">+</span>
             </div>
             <div class="faq-a">
-                <p class="jp">あなたの「好き」をベースに、AIが自分だけのウェブサイト、ビジネスプラン、ブランドをつくるお手伝いをします。例えば、イラストが好きならオリジナルグッズショップ、環境問題に興味があればエコプロジェクトのサイトなど、あなたの情熱にぴったりのプロジェクトが生まれます。</p>
+                <p class="jp" data-ja="はい、フリープランは永久無料です。ココロマッピングの基本機能と1つのベンチャープロジェクト、コミュニティの閲覧が無料でご利用いただけます。クレジットカードの登録も不要です。" data-en="Yes, the free plan is free forever. You can use the basic features of Kokoro Mapping, one venture project, and browse the community for free. No credit card registration is required.">はい、フリープランは永久無料です。ココロマッピングの基本機能と1つのベンチャープロジェクト、コミュニティの閲覧が無料でご利用いただけます。クレジットカードの登録も不要です。</p>
             </div>
         </div>
         <div class="faq-item fade-up">
             <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
-                <h3 class="jp">親として、どのように関われますか？</h3>
+                <h3 class="jp" data-ja="「ベンチャー」って何をつくるの？" data-en="What does a &quot;venture&quot; create?">「ベンチャー」って何をつくるの？</h3>
                 <span class="faq-toggle">+</span>
             </div>
             <div class="faq-a">
-                <p class="jp">ファミリープランでは、保護者ダッシュボードで子どものキャリア探索の進捗をリアルタイムで確認できます。週次の進捗レポート、親子ワークショップへのアクセス、お子さまの活動内容のサマリーが含まれます。子どもの自主性を尊重しつつ、安心して見守れる環境です。</p>
+                <p class="jp" data-ja="あなたの「好き」をベースに、AIが自分だけのウェブサイト、ビジネスプラン、ブランドをつくるお手伝いをします。例えば、イラストが好きならオリジナルグッズショップ、環境問題に興味があればエコプロジェクトのサイトなど、あなたの情熱にぴったりのプロジェクトが生まれます。" data-en="Based on your interests, AI will help you create your own website, business plan, and brand. For example, if you love illustration, you can create an original goods shop, or if you're interested in environmental issues, you can create an eco-project website. We'll create a project that perfectly matches your passion.">あなたの「好き」をベースに、AIが自分だけのウェブサイト、ビジネスプラン、ブランドをつくるお手伝いをします。例えば、イラストが好きならオリジナルグッズショップ、環境問題に興味があればエコプロジェクトのサイトなど、あなたの情熱にぴったりのプロジェクトが生まれます。</p>
             </div>
         </div>
         <div class="faq-item fade-up">
             <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
-                <h3 class="jp">英語ができなくても使えますか？</h3>
+                <h3 class="jp" data-ja="親として、どのように関われますか？" data-en="How do you get involved as a parent?">親として、どのように関われますか？</h3>
                 <span class="faq-toggle">+</span>
             </div>
             <div class="faq-a">
-                <p class="jp">もちろんです！KokoroGoは日本語を第一言語として設計されています。AIとの対話、コミュニティ、すべての機能が日本語で使えます。英語のコンテンツも一部ありますが、すべて日本語の翻訳付きです。</p>
+                <p class="jp" data-ja="ファミリープランでは、保護者ダッシュボードで子どものキャリア探索の進捗をリアルタイムで確認できます。週次の進捗レポート、親子ワークショップへのアクセス、お子さまの活動内容のサマリーが含まれます。子どもの自主性を尊重しつつ、安心して見守れる環境です。" data-en="With the Family Plan, you can see your child's career exploration progress in real time on the Parent Dashboard. Includes weekly progress reports, access to parent-child workshops, and a summary of your child's activities. Enjoy peace of mind while respecting your child's autonomy.">ファミリープランでは、保護者ダッシュボードで子どものキャリア探索の進捗をリアルタイムで確認できます。週次の進捗レポート、親子ワークショップへのアクセス、お子さまの活動内容のサマリーが含まれます。子どもの自主性を尊重しつつ、安心して見守れる環境です。</p>
+            </div>
+        </div>
+        <div class="faq-item fade-up">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <h3 class="jp" data-ja="英語ができなくても使えますか？" data-en="Can I use it even if I don't speak English?">英語ができなくても使えますか？</h3>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">
+                <p class="jp" data-ja="もちろんです！KokoroGoは日本語を第一言語として設計されています。AIとの対話、コミュニティ、すべての機能が日本語で使えます。英語のコンテンツも一部ありますが、すべて日本語の翻訳付きです。" data-en="Of course! KokoroGo is designed with Japanese as its primary language. All features, including AI interactions and the community, are available in Japanese. There is some English content, but it is all translated into Japanese.">もちろんです！KokoroGoは日本語を第一言語として設計されています。AIとの対話、コミュニティ、すべての機能が日本語で使えます。英語のコンテンツも一部ありますが、すべて日本語の翻訳付きです。</p>
             </div>
         </div>
     </section>
@@ -710,15 +734,15 @@
     <!-- WAITLIST CTA -->
     <section class="waitlist" id="waitlist">
         <div class="waitlist-inner">
-            <p class="section-label jp">ウェイトリスト</p>
-            <h2 class="section-title jp">一番乗りで体験しよう</h2>
-            <p class="waitlist-desc jp">2026年春のローンチに向けて準備中。ウェイトリストに登録すると、先行アクセスと特別割引をお届けします。</p>
+            <p class="section-label jp" data-ja="ウェイトリスト" data-en="WAITLIST">ウェイトリスト</p>
+            <h2 class="section-title jp" data-ja="一番乗りで体験しよう" data-en="Be the first to experience it">一番乗りで体験しよう</h2>
+            <p class="waitlist-desc jp" data-ja="2026年春のローンチに向けて準備中。ウェイトリストに登録すると、先行アクセスと特別割引をお届けします。" data-en="We're gearing up for a Spring 2026 launch. Join our waitlist for early access and special discounts.">2026年春のローンチに向けて準備中。ウェイトリストに登録すると、先行アクセスと特別割引をお届けします。</p>
             <form class="waitlist-form" id="waitlistForm">
-                <input type="email" id="waitlistEmail" placeholder="メールアドレス" required>
-                <button type="submit" class="jp">登録する</button>
+                <input type="email" id="waitlistEmail" placeholder="メールアドレス" data-placeholder-ja="メールアドレス" data-placeholder-en="Email address" required>
+                <button type="submit" class="jp" data-ja="登録する" data-en="Register">登録する</button>
             </form>
             <div class="waitlist-msg" id="waitlistMsg"></div>
-            <p class="waitlist-trust jp">✦ スパムなし ✦ いつでも解除可能 ✦ 先行アクセス特典あり</p>
+            <p class="waitlist-trust jp" data-ja="✦ スパムなし ✦ いつでも解除可能 ✦ 先行アクセス特典あり" data-en="✦ No spam ✦ Unsubscribe anytime ✦ Early access bonuses">✦ スパムなし ✦ いつでも解除可能 ✦ 先行アクセス特典あり</p>
         </div>
     </section>
 
@@ -748,6 +772,24 @@
             });
         }, { threshold: 0.15 });
         fadeEls.forEach(el => observer.observe(el));
+
+        // Language toggle
+        let currentLang = 'ja';
+        document.getElementById('langToggle').addEventListener('click', () => {
+            currentLang = currentLang === 'ja' ? 'en' : 'ja';
+            // Swap all text content
+            document.querySelectorAll('[data-ja][data-en]').forEach(el => {
+                el.textContent = el.getAttribute('data-' + currentLang);
+            });
+            // Swap placeholder
+            const emailInput = document.getElementById('waitlistEmail');
+            emailInput.placeholder = emailInput.getAttribute('data-placeholder-' + currentLang);
+            // Update toggle button label
+            document.querySelector('.lang-label').textContent = currentLang === 'ja' ? 'EN' : 'JA';
+            document.getElementById('langToggle').title = currentLang === 'ja' ? 'English' : '日本語';
+            // Update html lang
+            document.documentElement.lang = currentLang;
+        });
 
         // Waitlist form
         const urlParams = new URLSearchParams(window.location.search);
