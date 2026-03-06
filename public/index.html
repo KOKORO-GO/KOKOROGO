@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KokoroGo（心GO）— 好きを見つけて、未来をつくろう</title>
+    <meta name="description" content="AIが「好き」を見つけ、ビジネスに変える。12〜16歳の女の子のための、情熱発見＆ベンチャープラットフォーム。Find your spark. Build your future.">
+    <meta property="og:title" content="KokoroGo（心GO）— 好きを見つけて、未来をつくろう">
+    <meta property="og:description" content="AIが「好き」を見つけ、ビジネスに変える。12〜16歳の女の子のための情熱発見＆ベンチャープラットフォーム。">
+    <meta property="og:url" content="https://kokorogo.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Zen+Maru+Gothic:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --sakura: #F8B4C8;
+            --sakura-deep: #E88BA7;
+            --sakura-light: #FDE4EC;
+            --night: #1A1025;
+            --cream: #FFF9F5;
+            --gold: #D4A853;
+            --soft-purple: #9B8EC4;
+            --sky: #7EC8E3;
+            --coral: #F4845F;
+            --text: #2D2235;
+            --text-light: #6B5F7B;
+            --card-bg: rgba(255,255,255,0.7);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            overflow-x: hidden;
+        }
+
+        .jp { font-family: 'Zen Maru Gothic', sans-serif; }
+
+        /* ============ NAV ============ */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 16px 24px;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+        nav.scrolled {
+            background: rgba(26,16,37,0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+        .nav-logo {
+            font-weight: 800; font-size: 1.3rem; color: #fff;
+            text-decoration: none; display: flex; align-items: center; gap: 6px;
+        }
+        .nav-logo .heart { color: var(--sakura); font-family: 'Zen Maru Gothic', sans-serif; }
+        .nav-cta {
+            background: var(--sakura); color: var(--night); border: none;
+            padding: 10px 24px; border-radius: 100px; font-weight: 600;
+            font-size: 0.85rem; cursor: pointer; text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(248,180,200,0.4); }
+
+        /* ============ HERO ============ */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(165deg, #1A1025 0%, #2D1B3D 35%, #3D2451 60%, #4A2D5E 100%);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 100px 24px 80px; position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -20%; right: -10%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(248,180,200,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero::after {
+            content: ''; position: absolute; bottom: -15%; left: -10%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(155,142,196,0.12) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 720px; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 20px; border: 1px solid rgba(248,180,200,0.25);
+            border-radius: 100px; color: var(--sakura); font-size: 0.8rem;
+            font-weight: 500; letter-spacing: 0.05em; margin-bottom: 32px;
+            backdrop-filter: blur(4px);
+        }
+        .hero-badge .dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--sakura); animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .hero-tagline-jp {
+            font-family: 'Zen Maru Gothic', sans-serif;
+            font-size: clamp(1.6rem, 4vw, 2.6rem);
+            color: #fff; font-weight: 700; line-height: 1.4; margin-bottom: 12px;
+        }
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 800;
+            color: #fff; line-height: 1.05; margin-bottom: 8px; letter-spacing: -0.03em;
+        }
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--sakura) 0%, var(--soft-purple) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero-sub-en {
+            font-size: clamp(1rem, 2vw, 1.2rem); color: rgba(255,255,255,0.55);
+            font-weight: 300; margin-bottom: 24px;
+        }
+        .hero-desc {
+            font-size: clamp(0.95rem, 1.8vw, 1.1rem); color: rgba(255,255,255,0.65);
+            max-width: 540px; margin: 0 auto 40px; line-height: 1.7;
+        }
+        .hero-cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--sakura) 0%, var(--sakura-deep) 100%);
+            color: var(--night); border: none; padding: 16px 36px; border-radius: 100px;
+            font-weight: 700; font-size: 1rem; cursor: pointer; text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(248,180,200,0.35); }
+        .btn-secondary {
+            background: transparent; color: rgba(255,255,255,0.7);
+            border: 1px solid rgba(255,255,255,0.15); padding: 16px 32px;
+            border-radius: 100px; font-weight: 500; font-size: 1rem;
+            cursor: pointer; text-decoration: none; transition: border-color 0.2s, color 0.2s;
+        }
+        .btn-secondary:hover { border-color: var(--sakura); color: var(--sakura); }
+        .hero-trust { margin-top: 24px; font-size: 0.8rem; color: rgba(255,255,255,0.35); }
+
+        /* Floating sparkles */
+        .sparkle {
+            position: absolute; width: 4px; height: 4px; border-radius: 50%;
+            background: var(--sakura); opacity: 0; animation: sparkleFloat 6s infinite;
+        }
+        .sparkle:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 25%; right: 15%; animation-delay: 1.5s; }
+        .sparkle:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 3s; }
+        .sparkle:nth-child(4) { top: 40%; right: 25%; animation-delay: 4.5s; width: 3px; height: 3px; }
+        .sparkle:nth-child(5) { bottom: 20%; right: 10%; animation-delay: 2s; width: 5px; height: 5px; }
+        @keyframes sparkleFloat {
+            0% { opacity: 0; transform: translateY(0) scale(0); }
+            20% { opacity: 0.8; transform: translateY(-10px) scale(1); }
+            80% { opacity: 0.3; transform: translateY(-40px) scale(0.8); }
+            100% { opacity: 0; transform: translateY(-60px) scale(0); }
+        }
+
+        /* ============ SECTION SHARED ============ */
+        .section-label {
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em;
+            color: var(--sakura-deep); font-weight: 600; margin-bottom: 16px;
+        }
+        .section-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700;
+            color: var(--night); line-height: 1.2; margin-bottom: 20px;
+        }
+        .section-subtitle {
+            font-size: 1.05rem; color: var(--text-light); line-height: 1.7; max-width: 600px;
+        }
+
+        /* ============ HOW IT WORKS ============ */
+        .how-it-works { padding: 120px 24px; max-width: 1100px; margin: 0 auto; }
+        .how-header { text-align: center; margin-bottom: 72px; }
+        .how-header .section-subtitle { margin: 0 auto; }
+        .steps-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; position: relative;
+        }
+        .steps-grid::before {
+            content: ''; position: absolute; top: 72px; left: 16.66%; right: 16.66%; height: 2px;
+            background: linear-gradient(90deg, var(--sakura), var(--soft-purple), var(--sky)); opacity: 0.3;
+        }
+        .step-card { text-align: center; position: relative; }
+        .step-icon {
+            width: 96px; height: 96px; border-radius: 28px;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 24px; font-size: 2.2rem; position: relative;
+        }
+        .step-card:nth-child(1) .step-icon { background: linear-gradient(135deg, #FDE4EC 0%, #FCCFE0 100%); }
+        .step-card:nth-child(2) .step-icon { background: linear-gradient(135deg, #E8E4F4 0%, #D5CEE8 100%); }
+        .step-card:nth-child(3) .step-icon { background: linear-gradient(135deg, #DFF0F7 0%, #C5E4F1 100%); }
+        .step-num {
+            position: absolute; top: -8px; right: -8px; width: 28px; height: 28px;
+            border-radius: 50%; background: var(--night); color: #fff;
+            font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center;
+        }
+        .step-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--night); margin-bottom: 6px; }
+        .step-card .step-jp { font-family: 'Zen Maru Gothic', sans-serif; font-size: 0.85rem; color: var(--sakura-deep); margin-bottom: 12px; }
+        .step-card p.step-desc { font-size: 0.9rem; line-height: 1.7; color: var(--text-light); max-width: 280px; margin: 0 auto; }
+
+        /* ============ FEATURES ============ */
+        .features {
+            background: var(--night); padding: 120px 24px; position: relative; overflow: hidden;
+        }
+        .features::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(248,180,200,0.06) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(155,142,196,0.06) 0%, transparent 50%);
+        }
+        .features-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
+        .features-header { text-align: center; margin-bottom: 72px; }
+        .features-header .section-label { color: var(--sakura); }
+        .features-header .section-title { color: #fff; }
+        .features-header .section-subtitle { color: rgba(255,255,255,0.55); margin: 0 auto; }
+        .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .feature-card {
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px; padding: 36px;
+            transition: background 0.3s, border-color 0.3s, transform 0.3s;
+        }
+        .feature-card:hover {
+            background: rgba(255,255,255,0.07); border-color: rgba(248,180,200,0.15);
+            transform: translateY(-4px);
+        }
+        .feature-emoji { font-size: 2rem; margin-bottom: 16px; display: block; }
+        .feature-card h3 { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+        .feature-card .feature-jp { font-family: 'Zen Maru Gothic', sans-serif; font-size: 0.8rem; color: var(--sakura); margin-bottom: 12px; }
+        .feature-card p { font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.55); }
+
+        /* ============ KOKORO MAP ============ */
+        .kokoro-map { padding: 120px 24px; overflow: hidden; }
+        .kokoro-map-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+        }
+        .kokoro-map-text .section-subtitle { margin-bottom: 24px; }
+        .kokoro-map-bullets { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .kokoro-map-bullets li {
+            display: flex; gap: 12px; align-items: flex-start;
+            font-size: 0.95rem; color: var(--text-light); line-height: 1.6;
+        }
+        .kokoro-map-bullets li .bullet-icon {
+            flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%;
+            background: var(--sakura-light); display: flex; align-items: center;
+            justify-content: center; font-size: 0.7rem; margin-top: 2px;
+        }
+
+        /* Mock Kokoro Map Visual */
+        .kokoro-visual { position: relative; aspect-ratio: 1; max-width: 420px; margin: 0 auto; }
+        .kokoro-center {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 100px; height: 100px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--sakura) 0%, var(--sakura-deep) 100%);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Zen Maru Gothic', sans-serif; font-size: 1.8rem;
+            color: #fff; font-weight: 700;
+            box-shadow: 0 8px 40px rgba(248,180,200,0.3); z-index: 3;
+        }
+        .kokoro-ring {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            border-radius: 50%; border: 1.5px dashed rgba(248,180,200,0.25);
+        }
+        .kokoro-ring-1 { width: 200px; height: 200px; }
+        .kokoro-ring-2 { width: 300px; height: 300px; border-color: rgba(155,142,196,0.2); }
+        .kokoro-ring-3 { width: 400px; height: 400px; border-color: rgba(126,200,227,0.15); }
+        .kokoro-node {
+            position: absolute; padding: 8px 16px; border-radius: 100px;
+            font-size: 0.75rem; font-weight: 600; white-space: nowrap;
+            z-index: 2; box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .kokoro-node-1 { top: 12%; left: 55%; background: #FDE4EC; color: var(--sakura-deep); }
+        .kokoro-node-2 { top: 30%; right: 2%; background: #E8E4F4; color: #6B5B95; }
+        .kokoro-node-3 { bottom: 30%; right: 5%; background: #DFF0F7; color: #4A90A4; }
+        .kokoro-node-4 { bottom: 10%; left: 35%; background: #FFF3E0; color: #C0883E; }
+        .kokoro-node-5 { top: 35%; left: 0%; background: #E8F5E9; color: #4A8C5C; }
+        .kokoro-node-6 { top: 60%; left: 3%; background: #FCE4EC; color: #C2185B; }
+
+        /* ============ PRICING ============ */
+        .pricing {
+            background: linear-gradient(180deg, var(--cream) 0%, #F5EDE8 100%);
+            padding: 120px 24px;
+        }
+        .pricing-inner { max-width: 1100px; margin: 0 auto; }
+        .pricing-header { text-align: center; margin-bottom: 64px; }
+        .pricing-header .section-subtitle { margin: 0 auto; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .price-card {
+            background: #fff; border-radius: 20px; padding: 32px 24px;
+            text-align: center; position: relative; border: 1.5px solid transparent;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .price-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+        .price-card.popular { border-color: var(--sakura); box-shadow: 0 8px 30px rgba(248,180,200,0.2); }
+        .price-badge {
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--sakura) 0%, var(--sakura-deep) 100%);
+            color: #fff; font-size: 0.7rem; font-weight: 700;
+            padding: 4px 16px; border-radius: 100px; letter-spacing: 0.05em;
+        }
+        .price-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--night); margin-bottom: 4px; }
+        .price-card .price-jp { font-family: 'Zen Maru Gothic', sans-serif; font-size: 0.75rem; color: var(--text-light); margin-bottom: 16px; }
+        .price-amount { font-size: 2rem; font-weight: 800; color: var(--night); margin-bottom: 4px; }
+        .price-amount .currency { font-size: 1rem; font-weight: 600; }
+        .price-period { font-size: 0.8rem; color: var(--text-light); margin-bottom: 24px; }
+        .price-features { list-style: none; text-align: left; margin-bottom: 24px; }
+        .price-features li {
+            font-size: 0.85rem; color: var(--text-light); padding: 6px 0;
+            display: flex; gap: 8px; align-items: flex-start; line-height: 1.4;
+        }
+        .price-features li .check { color: var(--sakura-deep); font-weight: 700; flex-shrink: 0; }
+        .price-btn {
+            display: block; width: 100%; padding: 12px; border-radius: 100px;
+            border: 1.5px solid var(--sakura); background: transparent;
+            color: var(--sakura-deep); font-weight: 600; font-size: 0.85rem;
+            cursor: pointer; transition: background 0.2s, color 0.2s;
+        }
+        .price-btn:hover { background: var(--sakura); color: var(--night); }
+        .price-card.popular .price-btn {
+            background: linear-gradient(135deg, var(--sakura) 0%, var(--sakura-deep) 100%);
+            color: #fff; border-color: transparent;
+        }
+        .price-card.popular .price-btn:hover { box-shadow: 0 4px 16px rgba(248,180,200,0.4); }
+
+        /* ============ FAQ ============ */
+        .faq { padding: 120px 24px; max-width: 800px; margin: 0 auto; }
+        .faq-header { text-align: center; margin-bottom: 64px; }
+        .faq-item { border-bottom: 1px solid rgba(45,34,53,0.08); padding: 24px 0; }
+        .faq-q {
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; gap: 16px;
+        }
+        .faq-q h3 { font-size: 1rem; font-weight: 600; color: var(--night); line-height: 1.4; }
+        .faq-toggle {
+            flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+            background: var(--sakura-light); display: flex; align-items: center;
+            justify-content: center; font-size: 1.1rem; color: var(--sakura-deep);
+            transition: transform 0.3s;
+        }
+        .faq-item.open .faq-toggle { transform: rotate(45deg); }
+        .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
+        .faq-item.open .faq-a { max-height: 300px; padding-top: 16px; }
+        .faq-a p { font-size: 0.9rem; line-height: 1.7; color: var(--text-light); }
+
+        /* ============ WAITLIST ============ */
+        .waitlist {
+            background: linear-gradient(165deg, #1A1025 0%, #2D1B3D 35%, #3D2451 60%, #4A2D5E 100%);
+            padding: 120px 24px; text-align: center; position: relative; overflow: hidden;
+        }
+        .waitlist::before {
+            content: ''; position: absolute; top: -30%; right: -20%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(248,180,200,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .waitlist-inner { max-width: 560px; margin: 0 auto; position: relative; z-index: 2; }
+        .waitlist .section-label { color: var(--sakura); }
+        .waitlist .section-title { color: #fff; margin-bottom: 12px; }
+        .waitlist-desc { font-size: 1rem; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 40px; }
+        .waitlist-form { display: flex; gap: 12px; max-width: 460px; margin: 0 auto; }
+        .waitlist-form input[type="email"] {
+            flex: 1; padding: 16px 20px; border-radius: 100px;
+            border: 1.5px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.06); color: #fff;
+            font-size: 0.95rem; font-family: 'Outfit', sans-serif;
+            outline: none; transition: border-color 0.2s;
+        }
+        .waitlist-form input[type="email"]::placeholder { color: rgba(255,255,255,0.3); }
+        .waitlist-form input[type="email"]:focus { border-color: var(--sakura); }
+        .waitlist-form button {
+            background: linear-gradient(135deg, var(--sakura) 0%, var(--sakura-deep) 100%);
+            color: var(--night); border: none; padding: 16px 28px; border-radius: 100px;
+            font-weight: 700; font-size: 0.9rem; cursor: pointer; white-space: nowrap;
+            transition: transform 0.2s, box-shadow 0.2s; font-family: 'Outfit', sans-serif;
+        }
+        .waitlist-form button:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(248,180,200,0.3); }
+        .waitlist-form button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .waitlist-msg { margin-top: 16px; font-size: 0.85rem; min-height: 24px; }
+        .waitlist-msg.success { color: #81C784; }
+        .waitlist-msg.error { color: #EF9A9A; }
+        .waitlist-trust { margin-top: 24px; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background: var(--night); border-top: 1px solid rgba(255,255,255,0.04);
+            padding: 40px 24px;
+        }
+        .footer-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .footer-brand { font-weight: 700; font-size: 1rem; color: rgba(255,255,255,0.5); }
+        .footer-brand .heart { font-family: 'Zen Maru Gothic', sans-serif; color: var(--sakura); opacity: 0.6; }
+        footer p { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 900px) {
+            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .steps-grid { grid-template-columns: 1fr; gap: 48px; }
+            .steps-grid::before { display: none; }
+            .features-grid { grid-template-columns: 1fr; }
+            .kokoro-map-inner { grid-template-columns: 1fr; gap: 48px; }
+            .kokoro-visual { max-width: 320px; }
+            .kokoro-ring-3 { width: 310px; height: 310px; }
+            .kokoro-ring-2 { width: 230px; height: 230px; }
+            .kokoro-ring-1 { width: 160px; height: 160px; }
+            .kokoro-center { width: 80px; height: 80px; font-size: 1.4rem; }
+            .kokoro-node { font-size: 0.65rem; padding: 6px 12px; }
+            .kokoro-node-2 { right: -5%; }
+            .kokoro-node-3 { right: 0%; }
+            .kokoro-node-5 { left: -5%; }
+            .kokoro-node-6 { left: -2%; }
+            .pricing-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
+            .hero { padding: 80px 20px 60px; }
+            .waitlist-form { flex-direction: column; }
+            .waitlist-form button { width: 100%; }
+            .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+        }
+
+        /* ============ ANIMATIONS ============ */
+        .fade-up {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav id="mainNav">
+        <a href="#" class="nav-logo"><span class="heart">心</span>KokoroGo</a>
+        <a href="#waitlist" class="nav-cta">ウェイトリストに参加</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="dot"></span>
+                <span>2026年春ローンチ予定</span>
+            </div>
+            <p class="hero-tagline-jp jp">好きを見つけて、未来をつくろう。</p>
+            <h1>Kokoro<span>Go</span></h1>
+            <p class="hero-sub-en">Find your spark. Build your future.</p>
+            <p class="hero-desc jp">AIがあなたの「好き」を発見し、自分だけのビジネスに変える。12〜16歳の女の子のための、情熱発見＆ベンチャープラットフォーム。</p>
+            <div class="hero-cta-row">
+                <a href="#waitlist" class="btn-primary jp">ウェイトリストに参加 →</a>
+                <a href="#how" class="btn-secondary jp">くわしく見る ↓</a>
+            </div>
+            <p class="hero-trust jp">✦ 無料で始められる ✦ クレカ不要 ✦ 日本語対応</p>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works" id="how">
+        <div class="how-header fade-up">
+            <p class="section-label">How It Works</p>
+            <h2 class="section-title jp">3ステップで、あなたの<br>「好き」がカタチになる</h2>
+            <p class="section-subtitle jp">KokoroGoは、AIの力で「好き」を見つけ、それを本物のプロジェクトに育てるお手伝いをします。</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card fade-up">
+                <div class="step-icon">
+                    🔮
+                    <span class="step-num">1</span>
+                </div>
+                <h3>Discover Your Kokoro</h3>
+                <p class="step-jp jp">ココロを見つける</p>
+                <p class="step-desc jp">AIと一緒に対話しながら、あなたの興味・才能・価値観をマッピング。自分でも気づかなかった「好き」が見えてくる。</p>
+            </div>
+            <div class="step-card fade-up">
+                <div class="step-icon">
+                    🚀
+                    <span class="step-num">2</span>
+                </div>
+                <h3>Build Your Venture</h3>
+                <p class="step-jp jp">ベンチャーをつくる</p>
+                <p class="step-desc jp">あなたの「好き」に合わせて、AIがウェブサイトやビジネスプランを自動生成。アイデアが一瞬でカタチに。</p>
+            </div>
+            <div class="step-card fade-up">
+                <div class="step-icon">
+                    🌱
+                    <span class="step-num">3</span>
+                </div>
+                <h3>Grow with Support</h3>
+                <p class="step-jp jp">サポートと共に成長する</p>
+                <p class="step-desc jp">毎日のAIコクリエイターとコミュニティがあなたの成長をサポート。一人じゃない、みんなで進もう。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+        <div class="features-inner">
+            <div class="features-header fade-up">
+                <p class="section-label">Features</p>
+                <h2 class="section-title jp">すべてがあなたのために</h2>
+                <p class="section-subtitle jp">KokoroGoの4つの機能が、あなたの情熱を本物の力に変えます。</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-up">
+                    <span class="feature-emoji">🗺️</span>
+                    <h3>Kokoro Mapping</h3>
+                    <p class="feature-jp jp">ココロマッピング</p>
+                    <p class="jp">AIとの対話で、あなたの興味・才能・価値観をビジュアルマップに。好きなこと、得意なこと、大切にしていることの交差点を見つけよう。</p>
+                </div>
+                <div class="feature-card fade-up">
+                    <span class="feature-emoji">⚡</span>
+                    <h3>Venture Builder</h3>
+                    <p class="feature-jp jp">ベンチャービルダー</p>
+                    <p class="jp">あなたの「好き」に基づいて、AIがウェブサイト・ビジネスプラン・ブランドを自動作成。ゼロからビジネスを始める力が手に入る。</p>
+                </div>
+                <div class="feature-card fade-up">
+                    <span class="feature-emoji">🤖</span>
+                    <h3>Daily AI Co-Creator</h3>
+                    <p class="feature-jp jp">毎日のAIコクリエイター</p>
+                    <p class="jp">あなた専用のAIパートナーが毎日サポート。アイデア出し、問題解決、モチベーション維持まで、いつでも頼れる存在。</p>
+                </div>
+                <div class="feature-card fade-up">
+                    <span class="feature-emoji">💬</span>
+                    <h3>Community Hub</h3>
+                    <p class="feature-jp jp">コミュニティハブ</p>
+                    <p class="jp">同じ志を持つ仲間とつながろう。お互いのプロジェクトを応援し合い、メンターからアドバイスをもらえる安全な場所。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KOKORO MAP VISUAL -->
+    <section class="kokoro-map" id="kokoromap">
+        <div class="kokoro-map-inner">
+            <div class="kokoro-map-text fade-up">
+                <p class="section-label jp">ココロマッピング</p>
+                <h2 class="section-title jp">あなただけの「好き」の地図</h2>
+                <p class="section-subtitle jp">AIとの対話を通じて、自分の内面をビジュアル化。興味の広がりや才能の交差点が、新しい可能性を教えてくれる。</p>
+                <ul class="kokoro-map-bullets">
+                    <li>
+                        <span class="bullet-icon">✦</span>
+                        <span class="jp">5分の対話であなたの興味を分析</span>
+                    </li>
+                    <li>
+                        <span class="bullet-icon">✦</span>
+                        <span class="jp">才能・価値観・情熱をビジュアルマップに</span>
+                    </li>
+                    <li>
+                        <span class="bullet-icon">✦</span>
+                        <span class="jp">あなたにぴったりのベンチャーを提案</span>
+                    </li>
+                    <li>
+                        <span class="bullet-icon">✦</span>
+                        <span class="jp">使うほど精度が上がるAI</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="kokoro-visual fade-up">
+                <div class="kokoro-ring kokoro-ring-3"></div>
+                <div class="kokoro-ring kokoro-ring-2"></div>
+                <div class="kokoro-ring kokoro-ring-1"></div>
+                <div class="kokoro-center">心</div>
+                <span class="kokoro-node kokoro-node-1 jp">🎨 アート</span>
+                <span class="kokoro-node kokoro-node-2 jp">💻 テクノロジー</span>
+                <span class="kokoro-node kokoro-node-3 jp">🌍 環境</span>
+                <span class="kokoro-node kokoro-node-4 jp">📸 写真</span>
+                <span class="kokoro-node kokoro-node-5 jp">🎵 音楽</span>
+                <span class="kokoro-node kokoro-node-6 jp">✍️ 文章</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing" id="pricing">
+        <div class="pricing-inner">
+            <div class="pricing-header fade-up">
+                <p class="section-label">Pricing</p>
+                <h2 class="section-title jp">あなたにぴったりのプラン</h2>
+                <p class="section-subtitle jp">まずは無料で体験。もっと深く探究したくなったら、プランをアップグレード。</p>
+            </div>
+            <div class="pricing-grid">
+                <!-- Free -->
+                <div class="price-card fade-up">
+                    <h3>Free</h3>
+                    <p class="price-jp jp">フリー</p>
+                    <p class="price-amount"><span class="currency">¥</span>0</p>
+                    <p class="price-period jp">ずっと無料</p>
+                    <ul class="price-features">
+                        <li><span class="check">✓</span><span class="jp">ココロマッピング（基本）</span></li>
+                        <li><span class="check">✓</span><span class="jp">1つのベンチャープロジェクト</span></li>
+                        <li><span class="check">✓</span><span class="jp">コミュニティ閲覧</span></li>
+                        <li><span class="check">✓</span><span class="jp">週1回のAIセッション</span></li>
+                    </ul>
+                    <button class="price-btn" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">無料で始める</button>
+                </div>
+                <!-- Explorer -->
+                <div class="price-card fade-up">
+                    <h3>Explorer</h3>
+                    <p class="price-jp jp">エクスプローラー</p>
+                    <p class="price-amount"><span class="currency">¥</span>2,980</p>
+                    <p class="price-period jp">月額（税込）</p>
+                    <ul class="price-features">
+                        <li><span class="check">✓</span><span class="jp">ココロマッピング（詳細版）</span></li>
+                        <li><span class="check">✓</span><span class="jp">3つのベンチャープロジェクト</span></li>
+                        <li><span class="check">✓</span><span class="jp">毎日のAIコクリエイター</span></li>
+                        <li><span class="check">✓</span><span class="jp">コミュニティ参加</span></li>
+                    </ul>
+                    <button class="price-btn" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">エクスプローラーを選ぶ</button>
+                </div>
+                <!-- Creator Pro -->
+                <div class="price-card popular fade-up">
+                    <span class="price-badge jp">一番人気</span>
+                    <h3>Creator Pro</h3>
+                    <p class="price-jp jp">クリエイタープロ</p>
+                    <p class="price-amount"><span class="currency">¥</span>4,980</p>
+                    <p class="price-period jp">月額（税込）</p>
+                    <ul class="price-features">
+                        <li><span class="check">✓</span><span class="jp">フルココロマッピング</span></li>
+                        <li><span class="check">✓</span><span class="jp">無制限のベンチャー</span></li>
+                        <li><span class="check">✓</span><span class="jp">AIコクリエイター無制限</span></li>
+                        <li><span class="check">✓</span><span class="jp">メンターマッチング</span></li>
+                        <li><span class="check">✓</span><span class="jp">カスタムドメイン</span></li>
+                    </ul>
+                    <button class="price-btn" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">クリエイタープロを選ぶ</button>
+                </div>
+                <!-- Family -->
+                <div class="price-card fade-up">
+                    <h3>Family</h3>
+                    <p class="price-jp jp">ファミリー</p>
+                    <p class="price-amount"><span class="currency">¥</span>5,980</p>
+                    <p class="price-period jp">月額（税込）</p>
+                    <ul class="price-features">
+                        <li><span class="check">✓</span><span class="jp">Creator Pro全機能</span></li>
+                        <li><span class="check">✓</span><span class="jp">保護者ダッシュボード</span></li>
+                        <li><span class="check">✓</span><span class="jp">進捗レポート（週次）</span></li>
+                        <li><span class="check">✓</span><span class="jp">親子ワークショップ</span></li>
+                        <li><span class="check">✓</span><span class="jp">優先サポート</span></li>
+                    </ul>
+                    <button class="price-btn" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">ファミリーを選ぶ</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="faq-header fade-up">
+            <p class="section-label">FAQ</p>
+            <h2 class="section-title jp">よくある質問</h2>
+        </div>
+        <div class="faq-item fade-up">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <h3 class="jp">KokoroGoは何歳から使えますか？</h3>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">
+                <p class="jp">KokoroGoは12〜16歳の女の子を対象に設計されています。保護者の同意があれば、11歳からもご利用いただけます。ファミリープランでは、保護者がお子さまの活動を見守れるダッシュボードをご用意しています。</p>
+            </div>
+        </div>
+        <div class="faq-item fade-up">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <h3 class="jp">AIは安全ですか？子どもが使って大丈夫？</h3>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">
+                <p class="jp">安全性は最優先です。KokoroGoのAIは年齢に適したコンテンツのみを生成し、個人情報の保護を徹底しています。すべての会話は安全フィルターを通過し、保護者はいつでも内容を確認できます。</p>
+            </div>
+        </div>
+        <div class="faq-item fade-up">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <h3 class="jp">本当に無料で始められますか？</h3>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">
+                <p class="jp">はい、フリープランは永久無料です。ココロマッピングの基本機能と1つのベンチャープロジェクト、コミュニティの閲覧が無料でご利用いただけます。クレジットカードの登録も不要です。</p>
+            </div>
+        </div>
+        <div class="faq-item fade-up">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <h3 class="jp">「ベンチャー」って何をつくるの？</h3>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">
+                <p class="jp">あなたの「好き」をベースに、AIが自分だけのウェブサイト、ビジネスプラン、ブランドをつくるお手伝いをします。例えば、イラストが好きならオリジナルグッズショップ、環境問題に興味があればエコプロジェクトのサイトなど、あなたの情熱にぴったりのプロジェクトが生まれます。</p>
+            </div>
+        </div>
+        <div class="faq-item fade-up">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <h3 class="jp">親として、どのように関われますか？</h3>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">
+                <p class="jp">ファミリープランでは、保護者ダッシュボードで子どものキャリア探索の進捗をリアルタイムで確認できます。週次の進捗レポート、親子ワークショップへのアクセス、お子さまの活動内容のサマリーが含まれます。子どもの自主性を尊重しつつ、安心して見守れる環境です。</p>
+            </div>
+        </div>
+        <div class="faq-item fade-up">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <h3 class="jp">英語ができなくても使えますか？</h3>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">
+                <p class="jp">もちろんです！KokoroGoは日本語を第一言語として設計されています。AIとの対話、コミュニティ、すべての機能が日本語で使えます。英語のコンテンツも一部ありますが、すべて日本語の翻訳付きです。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WAITLIST CTA -->
+    <section class="waitlist" id="waitlist">
+        <div class="waitlist-inner">
+            <p class="section-label jp">ウェイトリスト</p>
+            <h2 class="section-title jp">一番乗りで体験しよう</h2>
+            <p class="waitlist-desc jp">2026年春のローンチに向けて準備中。ウェイトリストに登録すると、先行アクセスと特別割引をお届けします。</p>
+            <form class="waitlist-form" id="waitlistForm">
+                <input type="email" id="waitlistEmail" placeholder="メールアドレス" required>
+                <button type="submit" class="jp">登録する</button>
+            </form>
+            <div class="waitlist-msg" id="waitlistMsg"></div>
+            <p class="waitlist-trust jp">✦ スパムなし ✦ いつでも解除可能 ✦ 先行アクセス特典あり</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand"><span class="heart">心</span> KokoroGo</div>
+            <p>&copy; 2026 KokoroGo. Built with heart in Hawaii & Japan.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Nav scroll effect
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Scroll-triggered fade-in
+        const fadeEls = document.querySelectorAll('.fade-up');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        fadeEls.forEach(el => observer.observe(el));
+
+        // Waitlist form
+        const urlParams = new URLSearchParams(window.location.search);
+        const source = urlParams.get('ref') || 'direct';
+
+        document.getElementById('waitlistForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('waitlistEmail').value;
+            const btn = e.target.querySelector('button');
+            const msg = document.getElementById('waitlistMsg');
+
+            btn.disabled = true;
+            btn.textContent = '送信中...';
+            msg.className = 'waitlist-msg';
+            msg.textContent = '';
+
+            try {
+                const res = await fetch('/api/waitlist', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, source })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    msg.className = 'waitlist-msg success';
+                    msg.textContent = data.message || '登録完了！先行アクセスのご案内をお送りします。';
+                    document.getElementById('waitlistEmail').value = '';
+                } else {
+                    throw new Error(data.error || 'エラーが発生しました。');
+                }
+            } catch (err) {
+                msg.className = 'waitlist-msg error';
+                msg.textContent = err.message;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '登録する';
+            }
+        });
+    </script>
+</body>
+</html>
