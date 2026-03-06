@@ -35,7 +35,7 @@ export default async function handler(req, res) {
     // Send notification email to lynn@aloha.org
     try {
       await resend.emails.send({
-        from: 'KokoroGo Waitlist <onboarding@resend.dev>',
+        from: 'KokoroGo Waitlist <lynn@kokorogo.com>',
         to: 'lynn@aloha.org',
         subject: `🎉 New KokoroGo Waitlist Signup: ${email}`,
         html: `
