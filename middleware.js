@@ -1,18 +1,18 @@
-import { NextResponse } from 'next/server';
+import { next } from '@vercel/edge';
 
 export const config = {
   matcher: ['/((?!api|_next|password\\.html|favicon\\.ico|.*\\.(?:js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot)).*)'],
 };
 
 export default function middleware(request) {
-  const authCookie = request.cookies.get('kokorogo_auth');
+  const cookies = request.headers.get('cookie') || '';
+  const hasAuth = cookies.split(';').some(c => c.trim().startsWith('kokorogo_auth='));
 
-  if (authCookie?.value === '1') {
-    return NextResponse.next();
+  if (hasAuth) {
+    return next();
   }
 
   // Redirect to password page
-  const url = request.nextUrl.clone();
-  url.pathname = '/password.html';
-  return NextResponse.redirect(url);
+  const url = new URL('/password.html', request.url);
+  return Response.redirect(url.toString(), 307);
 }
