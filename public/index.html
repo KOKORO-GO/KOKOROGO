@@ -802,7 +802,7 @@
             const msg = document.getElementById('waitlistMsg');
 
             btn.disabled = true;
-            btn.textContent = '送信中...';
+            btn.textContent = currentLang === 'ja' ? '送信中...' : 'Submitting...';
             msg.className = 'waitlist-msg';
             msg.textContent = '';
 
@@ -815,17 +815,22 @@
                 const data = await res.json();
                 if (res.ok) {
                     msg.className = 'waitlist-msg success';
-                    msg.textContent = data.message || '登録完了！先行アクセスのご案内をお送りします。';
+                    msg.textContent = currentLang === 'ja'
+                        ? (data.message || '登録完了！先行アクセスのご案内をお送りします。🎉')
+                        : 'Registration complete! We\'ll send you early access details. 🎉';
                     document.getElementById('waitlistEmail').value = '';
                 } else {
-                    throw new Error(data.error || 'エラーが発生しました。');
+                    const errMsg = currentLang === 'ja'
+                        ? (data.error || 'エラーが発生しました。')
+                        : (res.status === 409 ? 'This email is already registered.' : 'An error occurred. Please try again.');
+                    throw new Error(errMsg);
                 }
             } catch (err) {
                 msg.className = 'waitlist-msg error';
                 msg.textContent = err.message;
             } finally {
                 btn.disabled = false;
-                btn.textContent = '登録する';
+                btn.textContent = currentLang === 'ja' ? '登録する' : 'Register';
             }
         });
     </script>
