@@ -8,6 +8,7 @@
     "build": "echo 'Static site — no build step required'"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.98.0"
+    "@supabase/supabase-js": "^2.98.0",
+    "resend": "^6.9.3"
   }
 }
