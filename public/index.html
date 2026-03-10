@@ -59,7 +59,35 @@
             font-weight: 800; font-size: 1.3rem; color: #fff;
             text-decoration: none; display: flex; align-items: center; gap: 6px;
         }
-        .nav-logo .heart { color: var(--sakura); font-size: 1.4rem; }
+        .nav-logo .kokoro-icon {
+            display: inline-block;
+            width: 28px; height: 28px;
+            background-color: var(--sakura);
+            -webkit-mask-image: url(kokoro-brush-transparent.png);
+            -webkit-mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-image: url(kokoro-brush-transparent.png);
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            vertical-align: middle;
+        }
+        .footer-brand .kokoro-icon {
+            display: inline-block;
+            width: 18px; height: 18px;
+            background-color: var(--sakura);
+            opacity: 0.6;
+            -webkit-mask-image: url(kokoro-brush-transparent.png);
+            -webkit-mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-image: url(kokoro-brush-transparent.png);
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            vertical-align: middle;
+        }
         .nav-cta {
             background: var(--sakura); color: var(--night); border: none;
             padding: 10px 24px; border-radius: 100px; font-weight: 600;
@@ -406,7 +434,7 @@
             display: flex; justify-content: space-between; align-items: center;
         }
         .footer-brand { font-weight: 700; font-size: 1rem; color: rgba(255,255,255,0.5); }
-        .footer-brand .heart { color: var(--sakura); opacity: 0.6; font-size: 1rem; }
+        /* .footer-brand .kokoro-icon styles defined above with nav-logo */
         footer p { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
 
         /* ============ RESPONSIVE ============ */
@@ -454,7 +482,7 @@
 
     <!-- NAV -->
     <nav id="mainNav">
-        <a href="#" class="nav-logo"><span class="heart material-symbols-outlined">favorite</span>KokoroGo</a>
+        <a href="#" class="nav-logo"><span class="kokoro-icon"></span>KokoroGo</a>
         <div class="nav-actions">
             <button class="lang-toggle" id="langToggle" title="English">
                 <span class="material-symbols-outlined">language</span>
@@ -756,7 +784,7 @@
     <!-- FOOTER -->
     <footer>
         <div class="footer-inner">
-            <div class="footer-brand"><span class="heart material-symbols-outlined">favorite</span> KokoroGo</div>
+            <div class="footer-brand"><span class="kokoro-icon"></span> KokoroGo</div>
             <p>&copy; 2026 KokoroGo. Built with heart in Hawaii & Japan.</p>
         </div>
     </footer>
