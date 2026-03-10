@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KokoroGo Logo — Brush 心 in Brand Pink</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: sans-serif;
+            background: #1A1025;
+            color: #fff;
+            padding: 40px 20px;
+        }
+        h1 { text-align: center; margin-bottom: 8px; font-size: 1.5rem; }
+        .subtitle { text-align: center; color: rgba(255,255,255,0.5); margin-bottom: 48px; font-size: 0.9rem; }
+
+        .demo-section {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .option {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 40px 24px;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .option:hover { border-color: #F8B4C8; }
+
+        /* Large logo display */
+        .logo-large {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .brand-text-lg { font-weight: 800; font-size: 2rem; color: #fff; }
+
+        /* Nav bar demo */
+        .nav-demo {
+            background: rgba(26,16,37,0.95);
+            padding: 12px 24px;
+            border-radius: 100px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .brand-text { font-weight: 800; font-size: 1.15rem; color: #fff; }
+        .style-name { font-size: 0.85rem; color: #F8B4C8; margin-top: 12px; font-weight: 600; }
+        .style-desc { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 4px; }
+        .divider { width: 40px; height: 1px; background: rgba(255,255,255,0.15); margin: 18px auto; }
+        .color-badge {
+            display: inline-block;
+            background: #F8B4C8;
+            color: #1A1025;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 100px;
+            margin-top: 8px;
+        }
+
+        /* ===== THE KOKORO ICON — exact brand pink ===== */
+        .kokoro-icon {
+            display: inline-block;
+            background-color: #F8B4C8;
+            -webkit-mask-image: url(kokoro-brush-transparent.png);
+            -webkit-mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-image: url(kokoro-brush-transparent.png);
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+        }
+        .logo-large .kokoro-icon { width: 64px; height: 64px; }
+        .nav-demo .kokoro-icon { width: 30px; height: 30px; }
+
+        /* Size variations */
+        .sizes {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 24px;
+        }
+        .size-item { text-align: center; }
+        .size-item .kokoro-icon { display: block; margin: 0 auto 6px; }
+        .size-label { font-size: 0.65rem; color: rgba(255,255,255,0.35); }
+        .sz-lg .kokoro-icon { width: 80px; height: 80px; }
+        .sz-md .kokoro-icon { width: 48px; height: 48px; }
+        .sz-sm .kokoro-icon { width: 32px; height: 32px; }
+        .sz-xs .kokoro-icon { width: 20px; height: 20px; }
+    </style>
+</head>
+<body>
+
+<h1>心 — Brush Calligraphy in Brand Pink</h1>
+<p class="subtitle">Your calligraphy kanji in exact #F8B4C8</p>
+
+<div class="demo-section">
+
+    <!-- Large hero display -->
+    <div class="option">
+        <div class="logo-large">
+            <span class="kokoro-icon"></span>
+            <span class="brand-text-lg">KokoroGo</span>
+        </div>
+        <div class="divider"></div>
+        <div class="nav-demo">
+            <span class="kokoro-icon"></span>
+            <span class="brand-text">KokoroGo</span>
+        </div>
+        <div class="style-name">Brand Pink #F8B4C8</div>
+        <span class="color-badge">#F8B4C8</span>
+    </div>
+
+    <!-- Size variations -->
+    <div class="option">
+        <p style="font-size:0.75rem; color:rgba(255,255,255,0.4); margin-bottom:20px; text-transform:uppercase; letter-spacing:2px;">Size Variations</p>
+        <div class="sizes">
+            <div class="size-item sz-lg">
+                <span class="kokoro-icon"></span>
+                <span class="size-label">80px</span>
+            </div>
+            <div class="size-item sz-md">
+                <span class="kokoro-icon"></span>
+                <span class="size-label">48px</span>
+            </div>
+            <div class="size-item sz-sm">
+                <span class="kokoro-icon"></span>
+                <span class="size-label">32px</span>
+            </div>
+            <div class="size-item sz-xs">
+                <span class="kokoro-icon"></span>
+                <span class="size-label">20px</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
