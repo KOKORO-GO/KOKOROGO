@@ -826,7 +826,8 @@
             document.documentElement.lang = currentLang;
         });
 
-        // Waitlist form
+        // Waitlist form — submits to Google Sheets via Apps Script
+        const WAITLIST_URL = 'https://script.google.com/macros/s/AKfycbxb-8TTEHSHlF26ZNC2a-hcK8s5fa4985B2glhitiCNxsxU8GGwRQaqVTg8sA2L8ws7/exec';
         const urlParams = new URLSearchParams(window.location.search);
         const source = urlParams.get('ref') || 'direct';
 
@@ -842,27 +843,23 @@
             msg.textContent = '';
 
             try {
-                const res = await fetch('/api/waitlist', {
+                await fetch(WAITLIST_URL, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, source })
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({ email, source })
                 });
-                const data = await res.json();
-                if (res.ok) {
-                    msg.className = 'waitlist-msg success';
-                    msg.textContent = currentLang === 'ja'
-                        ? (data.message || '登録完了！先行アクセスのご案内をお送りします。🎉')
-                        : 'Registration complete! We\'ll send you early access details. 🎉';
-                    document.getElementById('waitlistEmail').value = '';
-                } else {
-                    const errMsg = currentLang === 'ja'
-                        ? (data.error || 'エラーが発生しました。')
-                        : (res.status === 409 ? 'This email is already registered.' : 'An error occurred. Please try again.');
-                    throw new Error(errMsg);
-                }
+
+                msg.className = 'waitlist-msg success';
+                msg.textContent = currentLang === 'ja'
+                    ? '登録完了！先行アクセスのご案内をお送りします。🎉'
+                    : 'Registration complete! We\'ll send you early access details. 🎉';
+                document.getElementById('waitlistEmail').value = '';
             } catch (err) {
                 msg.className = 'waitlist-msg error';
-                msg.textContent = err.message;
+                msg.textContent = currentLang === 'ja'
+                    ? 'エラーが発生しました。もう一度お試しください。'
+                    : 'An error occurred. Please try again.';
             } finally {
                 btn.disabled = false;
                 btn.textContent = currentLang === 'ja' ? '登録する' : 'Register';
